@@ -28,7 +28,8 @@ https://api.wenodes.org/api/
 
 ```json
 {
-  "name": "John Doe",
+  "name": "John",
+  "last_name": "Doe",
   "email": "john@example.com",
   "phone": "09123456789",
   "password": "MyPassword@1",
@@ -55,7 +56,8 @@ https://api.wenodes.org/api/
 {
   "user": {
     "id": 1,
-    "name": "John Doe",
+    "name": "John",
+    "last_name": "Doe",
     "email": "john@example.com",
     "phone": "09123456789",
     "want_news": true
@@ -120,6 +122,7 @@ https://api.wenodes.org/api/
 ```json
 {
   "name": "John Updated",
+  "last_name": "Doe",
   "email": "new@example.com",
   "phone": "09999999999",
   "password": "NewPass@123",
