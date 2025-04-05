@@ -214,8 +214,9 @@ You can test using [Postman](https://www.postman.com/) or other REST tools.
 1. `POST /api/register` – Register a new user.
 2. `POST /api/login` – Login and save token.
 3. Use `Authorization: Bearer {token}` header.
-4. `POST /api/edit-user` – Update user info.
-5. `GET /api/logout` – Logout user.
+4. `GET /api/user` – see user info.
+5. `POST /api/edit-user` – Update user info.
+6. `POST /api/logout` – Logout user.
 
 ---
 
