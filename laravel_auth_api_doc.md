@@ -41,6 +41,7 @@ https://api.wenodes.org/api/
 ### 🔒 Validation Rules
 
 - `name`: required, string, max 255
+- `last_name`: optional, string, max 255
 - `email`: required, valid, unique
 - `phone`: required, string, max 15, unique
 - `password`: required, confirmed, min 8, must contain:
