@@ -22,6 +22,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+# remove it later with the import for better performance
 Route::get('/run-migrations', function (Request $request) {
     if ($request->input('key') !== 'aosobila') {
         abort(403);
