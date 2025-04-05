@@ -1,97 +1,164 @@
-# 📘 Authentication API Guide
 
-## 🔧 Base URL
+# 📄 Laravel AuthController API Documentation
+
+## 🌐 Base URL
+
 ```
 https://yourdomain.com/api/
 ```
 
-## 📌 Headers (Required for all requests)
-```
-Accept: application/json
-Content-Type: application/json
-Authorization: Bearer {your_token} (only for protected routes)
-```
+---
+
+## 📋 Common Headers
+
+| Header           | Value                       |
+|------------------|-----------------------------|
+| Accept           | application/json            |
+| Content-Type     | application/json            |
+| Authorization    | Bearer {token} *(if required)* |
 
 ---
 
-## 🔐 Endpoints
+## 🔐 1. Register a New User
 
-### 1. ✅ Register a New User
-**POST** `/register`
+- **Endpoint:** `POST /api/register`  
+- **Auth Required:** ❌  
+- **Rate Limited:** ✅ (3 attempts per minute per IP)
 
-#### Request Body
+### ✅ Request Body
+
 ```json
 {
   "name": "John Doe",
   "email": "john@example.com",
   "phone": "09123456789",
-  "password": "Password@123",
-  "password_confirmation": "Password@123",
+  "password": "MyPassword@1",
+  "password_confirmation": "MyPassword@1",
   "want_news": true
 }
 ```
 
-#### Response
+### 🔒 Validation Rules
+
+- `name`: required, string, max 255
+- `email`: required, valid, unique
+- `phone`: required, string, max 15, unique
+- `password`: required, confirmed, min 8, must contain:
+  - Uppercase
+  - Lowercase
+  - Number
+  - Special character
+- `want_news`: optional, boolean
+
+### 📤 Response Example (201 Created)
+
 ```json
 {
-  "user": { ... },
-  "token": "your-auth-token"
+  "user": {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john@example.com",
+    "phone": "09123456789",
+    "want_news": true
+  },
+  "token": "eyJ0eXAiOiJKV1QiLCJh..."
 }
 ```
 
 ---
 
-### 2. 🔓 Login (by email or phone)
-**POST** `/login`
+## 🔓 2. Login
 
-#### Request Body
+- **Endpoint:** `POST /api/login`  
+- **Auth Required:** ❌  
+- **Rate Limited:** ✅ (5 attempts per identifier)
+
+### ✅ Request Body
+
 ```json
 {
-  "identifier": "john@example.com", // OR phone number
-  "password": "Password@123"
+  "identifier": "john@example.com", // or phone number
+  "password": "MyPassword@1"
 }
 ```
 
-#### Response
+### 🔒 Validation Rules
+
+- `identifier`: required, string (email or phone)
+- `password`: required, min 8, with uppercase, lowercase, number, special character
+
+### 📤 Response Example (200 OK)
+
 ```json
 {
-  "user": { ... },
-  "token": "your-auth-token"
+  "user": {
+    "id": 1,
+    "name": "John Doe",
+    ...
+  },
+  "token": "eyJ0eXAiOiJKV1QiLCJh..."
+}
+```
+
+### ❌ Error Example (401 Unauthorized)
+
+```json
+{
+  "message": "Invalid credentials"
 }
 ```
 
 ---
 
-### 3. 🛠️ Edit User Profile
-**POST** `/edit-user`  
-🔒 **Requires token**
+## ✏️ 3. Edit User Profile
 
-#### Request Body (any field is optional)
+- **Endpoint:** `POST /api/edit-user`  
+- **Auth Required:** ✅ (Bearer Token)  
+- **Method:** POST
+
+### ✅ Request Body (All fields optional)
+
 ```json
 {
-  "name": "New Name",
+  "name": "John Updated",
   "email": "new@example.com",
-  "phone": "0999888777",
+  "phone": "09999999999",
   "password": "NewPass@123",
   "password_confirmation": "NewPass@123",
   "want_news": false
 }
 ```
 
-#### Response
+### 🔒 Validation Rules
+
+- All fields optional
+- Same password/email/phone rules as registration
+- `email` and `phone` must be unique except current user
+
+### 📤 Response Example (200 OK)
+
 ```json
 {
-  "user": { ... }
+  "user": {
+    "id": 1,
+    "name": "John Updated",
+    "email": "new@example.com",
+    "phone": "09999999999",
+    "want_news": false
+  }
 }
 ```
 
 ---
 
-### 4. 🚪 Logout
-**GET** `/logout`  
-🔒 **Requires token**
+## 🚪 4. Logout (All Devices)
 
-#### Response
+- **Endpoint:** `GET /api/logout`  
+- **Auth Required:** ✅ (Bearer Token)  
+- **Method:** GET
+
+### 📤 Response Example (200 OK)
+
 ```json
 {
   "message": "You are logged out from all devices."
@@ -100,9 +167,45 @@ Authorization: Bearer {your_token} (only for protected routes)
 
 ---
 
-## ⚠️ Notes
-- Passwords must include at least **one uppercase letter, one lowercase letter, one number, and one special character**.
-- After login/registration, store the token and use it for all further authenticated requests.
-- Rate limiting:
-  - Max 3 registrations per minute per IP.
-  - Max 5 login attempts per identifier.
+## 🛡️ Notes
+
+- All input and output is in `application/json`.
+- Use `Authorization: Bearer {token}` in headers after login/registration.
+- Token is generated using Laravel Sanctum.
+- Registration and login have rate limits to prevent abuse.
+- Login accepts both `email` or `phone` as identifier.
+- All password fields require:
+  - Minimum 8 characters
+  - At least 1 uppercase letter
+  - At least 1 lowercase letter
+  - At least 1 number
+  - At least 1 special character
+
+---
+
+## 🧪 Test Your API
+
+You can test using [Postman](https://www.postman.com/) or other REST tools.
+
+### 🔁 Flow:
+
+1. `POST /api/register` – Register a new user.
+2. `POST /api/login` – Login and save token.
+3. Use `Authorization: Bearer {token}` header.
+4. `POST /api/edit-user` – Update user info.
+5. `GET /api/logout` – Logout user.
+
+---
+
+## ✅ Summary
+
+| Action        | Endpoint         | Method | Auth Required | Rate Limited |
+|---------------|------------------|--------|----------------|---------------|
+| Register      | /api/register    | POST   | ❌             | ✅ (3/min/IP)  |
+| Login         | /api/login       | POST   | ❌             | ✅ (5/user)    |
+| Edit Profile  | /api/edit-user   | POST   | ✅             | ❌             |
+| Logout        | /api/logout      | GET    | ✅             | ❌             |
+
+---
+
+© 2025 — Your API Service
