@@ -153,7 +153,25 @@ https://yourdomain.com/api/
 
 ## 🚪 4. Logout (All Devices)
 
-- **Endpoint:** `GET /api/logout`  
+- **Endpoint:** `POST /api/logout`  
+- **Auth Required:** ✅ (Bearer Token)  
+- **Method:** POST
+
+### 📤 Response Example (200 OK)
+
+```json
+{
+  "message": "You are logged out from all devices."
+}
+```
+
+---
+
+---
+
+## 🚪 5. see user data (All Devices)
+
+- **Endpoint:** `GET /api/user`  
 - **Auth Required:** ✅ (Bearer Token)  
 - **Method:** GET
 
@@ -161,7 +179,11 @@ https://yourdomain.com/api/
 
 ```json
 {
-  "message": "You are logged out from all devices."
+  "user": {
+    "id": 1,
+    "name": "John Doe",
+    ...
+  }
 }
 ```
 
