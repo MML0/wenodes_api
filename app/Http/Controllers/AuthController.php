@@ -24,6 +24,7 @@ class AuthController extends Controller
 
         $fields = $request->validate([
             'name' => 'required|string|max:255',
+            'last_name' => 'nullable|string|max:255',
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|string|max:15|unique:users,phone',
             'password' => 'required|string|min:8|confirmed|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*?&]/',
@@ -31,6 +32,7 @@ class AuthController extends Controller
             ], [
             'name.required' => 'Name is required and must be a string with a maximum length of 255 characters.',
             'name.max' => 'Name must not exceed 255 characters.',
+            'last_name.max' => 'Last name must not exceed 255 characters.',
             'email.required' => 'Email is required.',
             'email.email' => 'The provided email is invalid.',
             'email.unique' => 'This email is already registered.',
@@ -56,12 +58,14 @@ class AuthController extends Controller
         // Validation with custom error messages
         $fields = $request->validate([
             'name' => 'nullable|string|max:255',
+            'last_name' => 'nullable|string|max:255',
             'email' => 'nullable|email|unique:users,email,' . $request->user()->id,
             'phone' => 'nullable|string|max:15|unique:users,phone,' . $request->user()->id,
             'password' => 'nullable|string|min:8|confirmed|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*?&]/',
             'want_news' => 'nullable|boolean',
         ], [
             'name.max' => 'Name must not exceed 255 characters.',
+            'last_name.max' => 'Last name must not exceed 255 characters.',
             'email.email' => 'The provided email is invalid.',
             'email.unique' => 'This email is already registered.',
             'phone.max' => 'Phone number must not exceed 15 characters.',
@@ -81,6 +85,9 @@ class AuthController extends Controller
         }
         if (isset($fields['email'])) {
             $user->email = $fields['email'];
+        }
+        if (isset($fields['last_name'])) {
+            $user->last_name = $fields['last_name'];
         }
         if (isset($fields['phone'])) {
             $user->phone = $fields['phone'];
