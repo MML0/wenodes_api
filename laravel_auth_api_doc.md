@@ -4,17 +4,16 @@
 ## 🌐 Base URL
 
 ```
-https://yourdomain.com/api/
+https://api.wenodes.org/api/
 ```
 
 ---
 
 ## 📋 Common Headers
 
-| Header           | Value                       |
-|------------------|-----------------------------|
-| Accept           | application/json            |
-| Content-Type     | application/json            |
+| Header           | Value                          |
+|------------------|--------------------------------|
+| Accept           | application/json               |
 | Authorization    | Bearer {token} *(if required)* |
 
 ---
