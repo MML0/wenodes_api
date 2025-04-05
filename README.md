@@ -19,69 +19,19 @@ For more information on the authentication API, please refer to the [Laravel Aut
 
 1. ✅ **Register a New User**  
    **POST** `/register`  
-   **Request Body**  
-   ```json
-   {
-     "name": "John Doe",
-     "email": "john@example.com",
-     "phone": "09123456789",
-     "password": "Password@123",
-     "password_confirmation": "Password@123",
-     "want_news": true
-   }
-   ```  
-   **Response**  
-   ```json
-   {
-     "user": { ... },
-     "token": "your-auth-token"
-   }
-   ```
 
 2. 🔓 **Login (by email or phone)**  
    **POST** `/login`  
    **Request Body**  
-   ```json
-   {
-     "identifier": "john@example.com", // OR phone number
-     "password": "Password@123"
-   }
-   ```  
-   **Response**  
-   ```json
-   {
-     "user": { ... },
-     "token": "your-auth-token"
-   }
-   ```
 
 3. 🛠️ **Edit User Profile**  
    **POST** `/edit-user`  
    🔒 **Requires token**  
-   **Request Body (any field is optional)**  
-   ```json
-   {
-     "name": "New Name",
-     "email": "new@example.com",
-     "phone": "0999888777",
-     "password": "NewPass@123",
-     "password_confirmation": "NewPass@123"
-   }
-   ```  
-   **Response**  
-   ```json
-   {
-     "user": { ... }
-   }
-   ```
+   **Request Body (any field is optional)**   
 
 4. 🚪 **Logout**  
    **GET** `/logout`  
    🔒 **Requires token**  
-   **Response**  
-   ```json
-   {
-     "message": "Successfully logged out"
-   }
-   ```
 
+5. **see user data**
+    **GET** `/user`
