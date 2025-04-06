@@ -20,7 +20,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'Too many registration attempts from this IP. Please try again later.'], 429);
         }
         // Increment the registration attempt counter
-        RateLimiter::hit($ipAddress);
+        RateLimiter::hit($ipAddress,600);
 
         $fields = $request->validate([
             'name' => 'required|string|max:255',
@@ -48,7 +48,7 @@ class AuthController extends Controller
         $user = User::create($fields);
 
         $token = $user->createToken($user->email)->plainTextToken;
-        // Log::info('User logged in successfully.', ['user_id' => $user->id]);
+        Log::info('User logged in successfully.', ['user_id' => $user->id]);
 
         return response()->json(['user' => $user, 'token' => $token], 201);
 
@@ -110,23 +110,23 @@ class AuthController extends Controller
     }
     public function login(Request $request){
         $identifier = $request->input('identifier');
-        if (RateLimiter::tooManyAttempts($identifier, 3)) {
+        if (RateLimiter::tooManyAttempts($identifier, 5)) {
             Log::info('Too many login attempts.', ['data' => $request]);
             return response()->json(['message' => 'Too many login attempts. Please try again later.'], 429);
         }
         // Increment the login attempt counter
-        RateLimiter::hit($identifier);
+        RateLimiter::hit($identifier,600);
         
         // Get the user's IP address
         $ipAddress = $request->ip();
 
         // Check if the IP address has exceeded the allowed number of registration attempts
-        if (RateLimiter::tooManyAttempts($ipAddress, 3)) { // Allow 3 attempts per minute
+        if (RateLimiter::tooManyAttempts($ipAddress, 5)) { // Allow 3 attempts per minute
             Log::info('Too many login attempts IP address: ' . $ipAddress, ['data' => $request]);
             return response()->json(['message' => 'Too many registration attempts from this IP. Please try again later.'], 429);
         }
         // Increment the registration attempt counter
-        RateLimiter::hit($ipAddress);
+        RateLimiter::hit($ipAddress,600);
 
 
         $ipAddress = $request->ip();

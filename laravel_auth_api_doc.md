@@ -22,7 +22,7 @@ https://api.wenodes.org/api/
 
 - **Endpoint:** `POST /api/register`  
 - **Auth Required:** ❌  
-- **Rate Limited:** ✅ (3 attempts per minute per IP)
+- **Rate Limited:** ✅ (3 attempts per 10 minute per IP)
 
 ### ✅ Request Body
 
@@ -73,7 +73,7 @@ https://api.wenodes.org/api/
 
 - **Endpoint:** `POST /api/login`  
 - **Auth Required:** ❌  
-- **Rate Limited:** ✅ (5 attempts per identifier)
+- **Rate Limited:** ✅ (5 attempts per identifier per 10 min)
 
 ### ✅ Request Body
 
@@ -227,8 +227,8 @@ You can test using [Postman](https://www.postman.com/) or other REST tools.
 
 | Action        | Endpoint         | Method | Auth Required | Rate Limited     |
 |---------------|------------------|--------|----------------|-----------------|
-| Register      | /api/register    | POST   | ❌             | ✅ (3/min/IP)  |
-| Login         | /api/login       | POST   | ❌             | ✅ (3/min)     |
+| Register      | /api/register    | POST   | ❌             | ✅ (3/10min/IP)  |
+| Login         | /api/login       | POST   | ❌             | ✅ (5/10min)     |
 | Edit Profile  | /api/edi_-user   | POST   | ✅             | ❌             |
 | Logout        | /api/logout      | POST   | ✅             | ❌             |
 | see user data | /api/user        | GET    | ✅             | ❌             |
