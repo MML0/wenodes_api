@@ -16,6 +16,7 @@ class AuthController extends Controller
 
         // Check if the IP address has exceeded the allowed number of registration attempts
         if (RateLimiter::tooManyAttempts($ipAddress, 3)) { // Allow 3 attempts per minute
+            Log::info('Too many registration attempts.', ['data' => $request]);
             return response()->json(['message' => 'Too many registration attempts from this IP. Please try again later.'], 429);
         }
         // Increment the registration attempt counter
@@ -109,7 +110,8 @@ class AuthController extends Controller
     }
     public function login(Request $request){
         $identifier = $request->input('identifier');
-        if (RateLimiter::tooManyAttempts($identifier, 5)) {
+        if (RateLimiter::tooManyAttempts($identifier, 3)) {
+            Log::info('Too many login attempts.', ['data' => $request]);
             return response()->json(['message' => 'Too many login attempts. Please try again later.'], 429);
         }
         // Increment the login attempt counter
@@ -120,12 +122,13 @@ class AuthController extends Controller
 
         // Check if the IP address has exceeded the allowed number of registration attempts
         if (RateLimiter::tooManyAttempts($ipAddress, 3)) { // Allow 3 attempts per minute
+            Log::info('Too many login attempts IP address: ' . $ipAddress, ['data' => $request]);
             return response()->json(['message' => 'Too many registration attempts from this IP. Please try again later.'], 429);
         }
         // Increment the registration attempt counter
         RateLimiter::hit($ipAddress);
 
-        
+
         $ipAddress = $request->ip();
         Log::info('User logged in from IP address: ' . $ipAddress);
         
