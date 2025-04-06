@@ -114,7 +114,7 @@ https://api.wenodes.org/api/
 
 ## ✏️ 3. Edit User Profile
 
-- **Endpoint:** `POST /api/edit-user`  
+- **Endpoint:** `POST /api/edit_user`  
 - **Auth Required:** ✅ (Bearer Token)  
 - **Method:** POST
 
@@ -218,7 +218,7 @@ You can test using [Postman](https://www.postman.com/) or other REST tools.
 2. `POST /api/login` – Login and save token.
 3. Use `Authorization: Bearer {token}` header.
 4. `GET /api/user` – see user info.
-5. `POST /api/edit-user` – Update user info.
+5. `POST /api/edit_user` – Update user info.
 6. `POST /api/logout` – Logout user.
 
 ---
@@ -229,7 +229,7 @@ You can test using [Postman](https://www.postman.com/) or other REST tools.
 |---------------|------------------|--------|----------------|-----------------|
 | Register      | /api/register    | POST   | ❌             | ✅ (3/min/IP)  |
 | Login         | /api/login       | POST   | ❌             | ✅ (5/min)     |
-| Edit Profile  | /api/edit-user   | POST   | ✅             | ❌             |
+| Edit Profile  | /api/edi_-user   | POST   | ✅             | ❌             |
 | Logout        | /api/logout      | POST   | ✅             | ❌             |
 | see user data | /api/user        | GET    | ✅             | ❌             |
 
