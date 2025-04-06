@@ -228,7 +228,7 @@ You can test using [Postman](https://www.postman.com/) or other REST tools.
 | Action        | Endpoint         | Method | Auth Required | Rate Limited     |
 |---------------|------------------|--------|----------------|-----------------|
 | Register      | /api/register    | POST   | ❌             | ✅ (3/min/IP)  |
-| Login         | /api/login       | POST   | ❌             | ✅ (5/min)     |
+| Login         | /api/login       | POST   | ❌             | ✅ (3/min)     |
 | Edit Profile  | /api/edi_-user   | POST   | ✅             | ❌             |
 | Logout        | /api/logout      | POST   | ✅             | ❌             |
 | see user data | /api/user        | GET    | ✅             | ❌             |
