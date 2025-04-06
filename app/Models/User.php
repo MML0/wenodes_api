@@ -27,6 +27,7 @@ class User extends Authenticatable
         'password',
         'want_news',
         'bio',
+        'type',
     ];
 
     /**
@@ -49,6 +50,7 @@ class User extends Authenticatable
         return [
             'want_news' => 'boolean',
             'bio' => 'string',
+            'type' => 'string',
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
