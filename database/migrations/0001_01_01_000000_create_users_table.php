@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('last_name')->nullable(); // Add last_name column
+            $table->string('bio')->nullable(); // Add last_name column
             $table->enum('type', ['admin', 'editor', 'artist', 'user'])->default('artist'); // Add user type with specified roles and default to artist
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

@@ -229,7 +229,7 @@ You can test using [Postman](https://www.postman.com/) or other REST tools.
 |---------------|------------------|--------|----------------|-----------------|
 | Register      | /api/register    | POST   | ❌             | ✅ (3/10min/IP)  |
 | Login         | /api/login       | POST   | ❌             | ✅ (5/10min)     |
-| Edit Profile  | /api/edi_-user   | POST   | ✅             | ❌             |
+| Edit Profile  | /api/edi_user   | POST   | ✅             | ❌             |
 | Logout        | /api/logout      | POST   | ✅             | ❌             |
 | see user data | /api/user        | GET    | ✅             | ❌             |
 
