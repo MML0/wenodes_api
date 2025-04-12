@@ -3,8 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use Illuminate\Support\Facades\Artisan; // Import Artisan if not already imported
-
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Artisan; // Import Artisan if not already imported and need to migrate
 
 Route::middleware('auth:sanctum')->put('/user', [AuthController::class, 'update']);
 
