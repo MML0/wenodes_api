@@ -26,7 +26,7 @@ class User extends Authenticatable
         'phone',
         'password',
         'want_news',  // sms or email news
-        'want_pro_membership', // intrested in pro membership
+        'want_pro_membership', // interested in pro membership
         'bio', 
         'type', //  enum ['admin', 'editor', 'pro_member', 'team_member', 'user']
         'photo', 
@@ -51,6 +51,7 @@ class User extends Authenticatable
     {
         return [
             'want_news' => 'boolean',
+            'want_pro_membership' => 'boolean', // Added missing cast for want_pro_membership
             'bio' => 'string',
             'type' => 'string',
             'email_verified_at' => 'datetime',

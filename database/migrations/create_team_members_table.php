@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('team_members', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');  // links to users table
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');  // Correctly link to users table
             $table->string('role');  // Example: director, artist, tech_guy
             // $table->enum('role', ['director', 'artist', 'programmer']);  // Example roles
             $table->string('profile_image_url')->nullable(); // Added profile image URL

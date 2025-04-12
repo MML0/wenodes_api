@@ -50,10 +50,19 @@ return new class extends Migration
                 'updated_at' => now(),
             ],
         ]);
+
+        Schema::create('team_member_work', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('team_member_id')->constrained()->onDelete('cascade');
+            $table->foreignId('work_id')->constrained()->onDelete('cascade');
+            $table->string('member_role')->nullable(); // Additional field for roles
+            $table->timestamps();
+        });
     }
 
     public function down(): void
     {
         Schema::dropIfExists('works');
+        Schema::dropIfExists('team_member_work');
     }
 };

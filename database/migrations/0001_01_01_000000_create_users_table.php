@@ -42,6 +42,52 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        // Insert test users
+        DB::table('users')->insert([
+            [
+                'name' => 'John',
+                'last_name' => 'Doe',
+                'bio' => 'A passionate artist.',
+                'type' => 'user',
+                'email' => 'a@a.a',
+                'password' => bcrypt('Aa123456@'),
+                'want_news' => true,
+                'want_pro_membership' => false,
+                'phone' => '09123456789',
+                'photo' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Jane',
+                'last_name' => 'Smith',
+                'bio' => 'An experienced editor.',
+                'type' => 'editor',
+                'email' => 'jane@example.com',
+                'password' => bcrypt('MyPassword@2'),
+                'want_news' => false,
+                'want_pro_membership' => true,
+                'phone' => '09123456780',
+                'photo' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Alice',
+                'last_name' => 'Johnson',
+                'bio' => 'A dedicated admin.',
+                'type' => 'admin',
+                'email' => 'alice@example.com',
+                'password' => bcrypt('MyPassword@3'),
+                'want_news' => true,
+                'want_pro_membership' => false,
+                'phone' => '09123456781',
+                'photo' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
     }
 
     /**
