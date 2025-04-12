@@ -13,7 +13,7 @@ Route::get('/',function(Request $request){
     return 'API';
 });
 
-
+# Auth
 Route::post('/register',[AuthController::class, 'register']);
 Route::post('/login',[AuthController::class, 'login']);
 Route::post('/logout',[AuthController::class, 'logout'])->middleware('auth:sanctum');
@@ -21,6 +21,10 @@ Route::post('/edit_user',[AuthController::class, 'editUser'])->middleware('auth:
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+
+Route::post('/users/{user}/photo', [UserController::class, 'updatePhoto'])->middleware('auth:sanctum');
+
+
 
 # remove it later with the import(use) for better performance
 Route::get('/run-migrations', function (Request $request) {

@@ -9,10 +9,12 @@ abstract class Controller
 {
     public function updatePhoto(Request $request, User $user)
     {
-            // Check if logged-in user is the same as target user
-        if ($request->user()->id !== $user->id) {
+        // Check if logged-in user is the same as target user
+        if ($request->user()->id !== $user->id && $request->user()->type !== 'admin') {
             return response()->json(['message' => 'Forbidden'], 403);
         }
+        
+
         $request->validate([
             'photo' => 'required|image|max:2048',  // only images, max 2MB
         ]);

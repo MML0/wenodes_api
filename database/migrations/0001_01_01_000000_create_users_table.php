@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('want_news')->default(false); // Add want_news column
             $table->string('phone')->nullable(); // Add phone column
-            $table->string('profile_image_url')->nullable(); // Added profile image URL
+            $table->string('photo')->nullable(); // Added profile image URL
             $table->rememberToken();
             $table->timestamps();
         });
