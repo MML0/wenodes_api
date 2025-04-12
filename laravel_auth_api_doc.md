@@ -44,11 +44,14 @@ https://api.wenodes.org/api/
 - `email`: required, valid, unique
 - `phone`: required, string, max 15, unique
 - `password`: required, confirmed, min 8, must contain:
-  - Uppercase
-  - Lowercase
-  - Number
-  - Special character
+  - At least 1 uppercase letter
+  - At least 1 lowercase letter
+  - At least 1 number
+  - At least 1 special character
 - `want_news`: optional, boolean
+- `bio`: optional, string (nullable) - User's biography
+- `want_pro_membership`: optional, boolean - Indicates if the user wants pro membership
+- `photo`: optional, string (nullable) - URL to the user's profile image
 
 ### 📤 Response Example (201 Created)
 
@@ -342,8 +345,8 @@ You can test using [Postman](https://www.postman.com/) or other REST tools.
 
 | Action        | Endpoint         | Method | Auth Required | Rate Limited     |
 |---------------|------------------|--------|----------------|-----------------|
-| Register      | /api/register    | POST   | ❌             | ✅ (3/10min/IP)  |
-| Login         | /api/login       | POST   | ❌             | ✅ (5/10min)     |
+| Register      | /api/register    | POST   | ❌             | ✅ (3/10min/IP)|
+| Login         | /api/login       | POST   | ❌             | ✅ (5/10min)   |
 | Edit Profile  | /api/edit_user   | POST   | ✅             | ❌             |
 | Logout        | /api/logout      | POST   | ✅             | ❌             |
 | See User Data | /api/user        | GET    | ✅             | ❌             |
