@@ -15,13 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('last_name')->nullable(); // Add last_name column
-            $table->string('bio')->nullable(); // Add last_name column
-            $table->enum('type', ['admin', 'editor', 'team', 'user'])->default('user'); // Add user type with specified roles and default to artist
+            $table->string('bio')->nullable(); // Add bio column
+            $table->enum('type', ['admin', 'editor', 'team_member', 'user'])->default('user'); // Add user type with specified roles and default to user
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('want_news')->default(false); // Add want_news column
             $table->string('phone')->nullable(); // Add phone column
+            $table->string('profile_image_url')->nullable(); // Added profile image URL
             $table->rememberToken();
             $table->timestamps();
         });

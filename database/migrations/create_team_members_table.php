@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');  // links to users table
             $table->string('role');  // Example: director, artist, tech_guy
+            // $table->enum('role', ['director', 'artist', 'programmer']);  // Example roles
+            $table->string('profile_image_url')->nullable(); // Added profile image URL
 
             $table->string('name_fa')->nullable();  // Persian name
             $table->string('name_en')->nullable();  // English name

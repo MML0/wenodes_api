@@ -28,6 +28,7 @@ class User extends Authenticatable
         'want_news',
         'bio',
         'type',
+        'profile_image_url', // Added profile image URL
     ];
 
     /**

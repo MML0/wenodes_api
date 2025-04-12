@@ -15,7 +15,8 @@ class TeamMember extends Model
         'bio_fa',
         'bio_en',
         'name_fa',
-        'name_en'
+        'name_en',
+        'profile_image_url' // Added profile url img
     ];
 
     public function user()
