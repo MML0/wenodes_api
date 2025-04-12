@@ -29,6 +29,7 @@ class AuthController extends Controller
             'phone' => 'required|string|max:15|unique:users,phone',
             'password' => 'required|string|min:8|confirmed|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*?&]/',
             'want_news' => 'nullable|boolean',
+            'want_pro_membership' => 'nullable|boolean', // Added validation for want_pro_membership
             ], [
             'name.required' => 'Name is required and must be a string with a maximum length of 255 characters.',
             'name.max' => 'Name must not exceed 255 characters.',
@@ -44,6 +45,7 @@ class AuthController extends Controller
             'password.confirmed' => 'Password confirmation does not match.',
             'password.regex' => 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.',
             'want_news.boolean' => 'Want news must be a boolean value if provided.',
+            'want_pro_membership.boolean' => 'Want pro membership must be a boolean value if provided.', // Added custom error message for want_pro_membership
         ]);
         $user = User::create($fields);
 
@@ -63,6 +65,7 @@ class AuthController extends Controller
             'phone' => 'nullable|string|max:15|unique:users,phone,' . $request->user()->id,
             'password' => 'nullable|string|min:8|confirmed|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*?&]/',
             'want_news' => 'nullable|boolean',
+            'want_pro_membership' => 'nullable|boolean', 
         ], [
             'name.max' => 'Name must not exceed 255 characters.',
             'last_name.max' => 'Last name must not exceed 255 characters.',
@@ -74,6 +77,7 @@ class AuthController extends Controller
             'password.confirmed' => 'Password confirmation does not match.',
             'password.regex' => 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.',
             'want_news.boolean' => 'Want news must be a boolean value if provided.',
+            'want_pro_membership.boolean' => 'Want pro membership must be a boolean value if provided.', // Added validation for want_pro_membership
         ]);
     
         // Retrieve the authenticated user
@@ -97,6 +101,9 @@ class AuthController extends Controller
         }
         if (isset($fields['want_news'])) {
             $user->want_news = $fields['want_news'];
+        }
+        if (isset($fields['want_pro_membership'])) { // Added missing field
+            $user->want_pro_membership = $fields['want_pro_membership'];
         }
         // log changes
         Log::info('User updated successfully.', ['user_id' => $user->id, 'changes' => $fields]);
