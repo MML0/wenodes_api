@@ -22,7 +22,8 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::post('/users/{user}/photo', [UserController::class, 'updatePhoto'])->middleware('auth:sanctum');
+// Route::post('/users/{user}/photo', [UserController::class, 'updatePhoto'])->middleware('auth:sanctum');
+Route::post('/user/photo', [UserController::class, 'updatePhoto'])->middleware('auth:sanctum');
 
 
 

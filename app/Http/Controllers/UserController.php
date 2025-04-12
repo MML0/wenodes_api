@@ -14,10 +14,7 @@ abstract class Controller
         }
         RateLimiter::hit($key, 600); // 10 minutes in seconds
 
-        // Check if logged-in user is the same as target user
-        if ($request->user()->id !== $user->id && $request->user()->type !== 'admin') {
-            return response()->json(['message' => 'Forbidden'], 403);
-        }
+        // No need to check user ID as the route handles it
         
         $request->validate([
             'photo' => 'required|image|max:2048',  // only images, max 2MB
