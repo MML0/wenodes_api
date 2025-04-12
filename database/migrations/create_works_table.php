@@ -15,6 +15,7 @@ return new class extends Migration
             $table->text('description_fa')->nullable();
             $table->text('description_en')->nullable();
             $table->string('cover_image')->nullable();  // path to image
+            // later add galery photos
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Artisan; // Import Artisan if not already imported and need to migrate
+use App\Models\Work; // Import the Work model
 
 Route::middleware('auth:sanctum')->put('/user', [AuthController::class, 'update']);
 
@@ -34,4 +35,9 @@ Route::get('/run-migrations', function (Request $request) {
     }
     Artisan::call('migrate', ['--force' => true]);
     return 'Migrations completed.';
+});
+
+// Route to get all works
+Route::get('/works', function () {
+    return Work::all(); // Retrieve all works from the database
 });
