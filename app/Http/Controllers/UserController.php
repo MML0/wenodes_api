@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 
 
-abstract class Controller
+class UserController extends Controller
 {
     public function updatePhoto(Request $request, User $user = null)
     {
@@ -15,7 +15,7 @@ abstract class Controller
             return response()->json(['message' => 'Too many requests. Please try again later.'], 429);
         }
         RateLimiter::hit($key, 600); // 10 minutes in seconds
-        
+
         // If no user is provided, use the authenticated user
         if (!$user) {
             $user = $request->user();
