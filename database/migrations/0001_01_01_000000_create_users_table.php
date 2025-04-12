@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('last_name')->nullable(); // Add last_name column
             $table->string('bio')->nullable(); // Add bio column
-            $table->enum('type', ['admin', 'editor', 'team_member', 'user'])->default('user'); // Add user type with specified roles and default to user
+            $table->enum('type', ['admin', 'editor', 'pro_member', 'team_member', 'user'])->default('user'); // Add user type with specified roles and default to user
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

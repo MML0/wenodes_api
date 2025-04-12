@@ -25,10 +25,11 @@ class User extends Authenticatable
         'email',
         'phone',
         'password',
-        'want_news',
-        'bio',
+        'want_news',  // sms or email news
+        'want_pro_membership', // intrested in pro membership
+        'bio',  //  enum ['admin', 'editor', 'pro_member', 'team_member', 'user']
         'type',
-        'photo', // Added profile image URL
+        'photo', 
     ];
 
     /**
