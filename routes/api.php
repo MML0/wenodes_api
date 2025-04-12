@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Artisan; // Import Artisan if not already imported and need to migrate
 use App\Models\Work; // Import the Work model
+use App\Models\TeamMember; // Import the TeamMember model
 
 Route::middleware('auth:sanctum')->put('/user', [AuthController::class, 'update']);
 
@@ -26,6 +27,15 @@ Route::get('/user', function (Request $request) {
 Route::post('/users/{user}/photo', [UserController::class, 'updatePhoto'])->middleware('auth:sanctum');
 Route::post('/user/photo', [UserController::class, 'updatePhoto'])->middleware('auth:sanctum');
 
+// Route to get all works
+Route::get('/works', function () {
+    return Work::all(); // Retrieve all works from the database
+});
+
+// Route to get all team members
+Route::get('/team-members', function () {
+    return TeamMember::all(); // Retrieve all team members from the database
+});
 
 
 # remove it later with the import(use) for better performance
@@ -37,7 +47,3 @@ Route::get('/run-migrations', function (Request $request) {
     return 'Migrations completed.';
 });
 
-// Route to get all works
-Route::get('/works', function () {
-    return Work::all(); // Retrieve all works from the database
-});

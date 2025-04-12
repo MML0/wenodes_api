@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('want_news')->default(false); // Add want_news column
+            $table->boolean('want_pro_membership')->default(false); // Add want_pro_membership column
             $table->string('phone')->nullable(); // Add phone column
             $table->string('photo')->nullable(); // Added profile image URL
             $table->rememberToken();
