@@ -33,7 +33,8 @@ https://api.wenodes.org/api/
   "phone": "09123456789",
   "password": "MyPassword@1",
   "password_confirmation": "MyPassword@1",
-  "want_news": true
+  "want_news": true,
+  "want_pro_membership": false
 }
 ```
 
