@@ -26,6 +26,7 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/users/{user}/photo', [UserController::class, 'updatePhoto'])->middleware('auth:sanctum');
 Route::post('/user/photo', [UserController::class, 'updatePhoto'])->middleware('auth:sanctum');
+Route::get('/user/photo/{filename}', [UserController::class, 'servePhoto']);
 
 // Route to get all works
 Route::get('/works', function () {

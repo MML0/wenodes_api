@@ -10,11 +10,11 @@ class UserController extends Controller
 {
     public function updatePhoto(Request $request, User $user = null)
     {
-        $key = 'user_photo_upload_' . $user->id; // Define the key for rate limiting
-        if (RateLimiter::tooManyAttempts($key, 3)) {
+        $key = 'user_photo_upload_' . $request->id; // Define the key for rate limiting
+        if (RateLimiter::tooManyAttempts($key, 4)) {
             return response()->json(['message' => 'Too many requests. Please try again later.'], 429);
         }
-        RateLimiter::hit($key, 600); // 10 minutes in seconds
+        RateLimiter::hit($key, 200); // 10 minutes in seconds
 
         // If no user is provided, use the authenticated user
         if (!$user) {
@@ -37,8 +37,8 @@ class UserController extends Controller
             // Store the photo in the 'users' directory within the public storage
             $path = $request->file('photo')->storeAs('users', $filename, 'public');
     
-            // Update the user's photo attribute with the URL of the uploaded photo
-            $user->photo = '/storage/' . $path;
+            // Update the user's photo attribute with the correct path of the uploaded photo
+            $user->photo = '/api/user/photo/' . $filename;
             // Save the updated user model to the database
             $user->save();
     
@@ -52,4 +52,14 @@ class UserController extends Controller
         return response()->json(['message' => 'No photo uploaded.'], 400);
     }
     
+    public function servePhoto($filename)
+    {
+        $path = storage_path('app/public/users/' . $filename); // Corrected the path to match where the photos are stored
+
+        if (!file_exists($path)) {
+            abort(404); // Return a 404 error if the file does not exist
+        }
+
+        return response()->file($path); // Serve the file
+    }
 }

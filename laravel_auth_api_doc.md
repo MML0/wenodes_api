@@ -221,7 +221,7 @@ The `users` table contains the following fields:
 
 ## 📸 7. Update User Photo
 
-- **Endpoint:** `POST /api/user/photo` or `POST /api/users/{user}/photo`  
+- **Endpoint:** `POST /api/user/photo` or `POST /api/users/{user}/photo` (admin)
 - **Auth Required:** ✅ (Bearer Token)  
 - **Method:** POST
 

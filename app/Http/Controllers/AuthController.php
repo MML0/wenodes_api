@@ -20,7 +20,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'Too many registration attempts from this IP. Please try again later.'], 429);
         }
         // Increment the registration attempt counter
-        RateLimiter::hit($ipAddress,600);
+        RateLimiter::hit($ipAddress,200);
 
         $fields = $request->validate([
             'name' => 'required|string|max:255',
@@ -122,7 +122,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'Too many login attempts. Please try again later.'], 429);
         }
         // Increment the login attempt counter
-        RateLimiter::hit($identifier,600);
+        RateLimiter::hit($identifier,200);
         
         // Get the user's IP address
         $ipAddress = $request->ip();

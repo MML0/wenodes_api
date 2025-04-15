@@ -55,6 +55,7 @@ class User extends Authenticatable
             'bio' => 'string',
             'type' => 'string',
             'email_verified_at' => 'datetime',
+            'phone_verified_at' => 'datetime', // Added cast for phone_verified_at
             'password' => 'hashed',
         ];
     }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('type', ['admin', 'editor', 'pro_member', 'team_member', 'user'])->default('user'); // Add user type with specified roles and default to user
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('phone_verified_at')->nullable(); // Add phone_verified_at column
             $table->string('password');
             $table->boolean('want_news')->default(false); // Add want_news column
             $table->boolean('want_pro_membership')->default(false); // Add want_pro_membership column
