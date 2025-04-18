@@ -41,7 +41,7 @@ Route::get('/team-members', function () {
 
 # remove it later with the import(use) for better performance
 Route::get('/run-migrations', function (Request $request) {
-    if ($request->input('key') !== 'sudo') {
+    if ($request->input('key') !== '3545gf!@#') {
         abort(403);
     }
     Artisan::call('config:clear');
