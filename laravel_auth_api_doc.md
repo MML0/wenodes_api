@@ -87,10 +87,11 @@ The `users` table contains the following fields:
 | `type`                    | Enum        | User role (admin, editor, pro_member, team_member, user) |
 | `email`                   | String      | User's email (unique)                            |
 | `email_verified_at`       | Timestamp   | Timestamp for email verification (nullable)      |
+| `phone`                   | String      | User's phone number (unique)                   |
+| `phone_verified_at`       | Timestamp   | Timestamp for phone verification (nullable)      |
 | `password`                | String      | User's password                                  |
 | `want_news`               | Boolean     | Indicates if the user wants to receive news      |
 | `want_pro_membership`     | Boolean     | Indicates if the user wants pro membership       |
-| `phone`                   | String      | User's phone number (nullable)                   |
 | `photo`                   | String      | URL to the user's profile image (nullable)       |
 | `remember_token`          | String      | Token for "remember me" functionality            |
 | `created_at`              | Timestamp   | Timestamp for when the user was created          |

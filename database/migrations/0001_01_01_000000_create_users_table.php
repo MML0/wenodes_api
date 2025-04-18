@@ -52,7 +52,7 @@ return new class extends Migration
                 'bio' => 'A passionate artist.',
                 'type' => 'user',
                 'email' => 'a@a.a',
-                'password' => bcrypt('Aa123456@'),
+                'password' => bcrypt('Aa@12345678'),
                 'want_news' => true,
                 'want_pro_membership' => false,
                 'phone' => '09123456789',

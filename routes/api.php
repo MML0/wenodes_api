@@ -44,7 +44,8 @@ Route::get('/run-migrations', function (Request $request) {
     if ($request->input('key') !== 'sudo') {
         abort(403);
     }
-    Artisan::call('migrate', ['--force' => true]);
-    return 'Migrations completed.';
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('migrate:fresh', ['--force' => true]);
+    return 'Migrations and caching cleared and fresh migrations completed.';
 });
-
